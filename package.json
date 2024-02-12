@@ -1,0 +1,21 @@
+{
+  "name": "swiggy-clone",
+  "version": "1.0.0",
+  "description": "Swiggy Clone using React JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Niranjan A S",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  }
+}
