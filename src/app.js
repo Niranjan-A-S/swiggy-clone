@@ -5,6 +5,7 @@ import { AboutPage } from "./pages/about";
 import { ContactPage } from "./pages/contact";
 import { HomePage } from "./pages/home";
 import { Header } from "./components/header";
+import { RestaurantInfo } from "./pages/restaurant-info";
 
 const AppLayout = () => {
     return (
@@ -33,6 +34,10 @@ const appRouter = createBrowserRouter([
                 path: 'contact',
                 element: <ContactPage />
             },
+            {
+                path: 'restaurant/:resId',
+                element: <RestaurantInfo />
+            }
         ]
     },
 
