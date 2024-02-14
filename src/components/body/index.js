@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
 import { RestaurantContainer } from "./restaurant/restaurant-container";
-import { Filter } from "./toolbar/filter-button";
+import { FilterButton } from "./toolbar/filter-button";
 import { SWIGGY_API_URL } from "../../utils/constants";
 import { Shimmer } from "./shimmer";
+import { SearchBar } from "./toolbar/search";
 
 export const Body = () => {
-
+    console.log('Body is rerendering');
     const [restaurants, setRestaurants] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+    const [query, setQuery] = useState('');
+
+    const onQueryChange = (event) => {
+        setQuery(event.target.value);
+    }
+
+    const onSearch = () => {
+        const temp = restaurants?.filter(restaurant => restaurant.info.name.toLowerCase().includes(query.toLowerCase()));
+        setFilteredRestaurants(temp);
+    }
 
     const filterTopRatedRestaurants = () => {
-        setRestaurants(restaurants.filter(restaurant => restaurant.info.avgRating > 4.5));
+        const temp = restaurants?.filter(restaurant => restaurant.info.avgRating > 4.5);
+        setFilteredRestaurants(temp);
     };
 
     const fetchData = async () => {
@@ -17,7 +30,8 @@ export const Body = () => {
             const response = await fetch(SWIGGY_API_URL);
             const { data: { cards } } = await response.json();
             const { restaurants: _restaurants } = cards[1]?.card?.card?.gridElements?.infoWithStyle;
-            setRestaurants(_restaurants)
+            setRestaurants(_restaurants);
+            setFilteredRestaurants(_restaurants);
         } catch (error) {
             console.error(error);
         }
@@ -31,8 +45,14 @@ export const Body = () => {
         ? <Shimmer />
         : (
             <div className="body">
-                <Filter onFilter={filterTopRatedRestaurants} />
-                <RestaurantContainer restaurantLists={restaurants} />
-            </div> 
+                <div className="toolbar">
+                    <FilterButton onFilter={filterTopRatedRestaurants} />
+                    <SearchBar
+                        query={query}
+                        onSearch={onSearch}
+                        onChange={onQueryChange} />
+                </div>
+                <RestaurantContainer restaurantLists={filteredRestaurants} />
+            </div>
         )
 }

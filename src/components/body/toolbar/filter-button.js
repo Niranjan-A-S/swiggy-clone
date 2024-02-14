@@ -1,5 +1,5 @@
-export const Filter = ({ onFilter }) => {
+export const FilterButton = ({ onFilter }) => {
     return <div className="filter">
-        <button className="filter-btn" onClick={onFilter}>Top Rated Restaurants</button>
+        <button className="btn filter-btn" onClick={onFilter}>Top Rated Restaurants</button>
     </div>
 }
