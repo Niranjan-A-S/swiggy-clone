@@ -6,7 +6,6 @@ import { Shimmer } from "./shimmer";
 import { SearchBar } from "./toolbar/search";
 
 export const Body = () => {
-    console.log('Body is rerendering');
     const [restaurants, setRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [query, setQuery] = useState('');

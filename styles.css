@@ -10,7 +10,11 @@ body {
     font-weight: 300;
     font-size: 14px;
     color: #282c3f;
+}
 
+a {
+    all: unset;
+    cursor: pointer;
 }
 
 .header {
