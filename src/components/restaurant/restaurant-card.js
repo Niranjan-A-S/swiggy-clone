@@ -1,4 +1,4 @@
-import { CDN_URL } from "../../../utils/constants"
+import { CDN_URL } from "../../utils/constants"
 
 export const RestaurantCard = ({ data: { name, cuisines, avgRating, sla: { slaString }, cloudinaryImageId, costForTwo } }) => {
     return <div className="res-card">
