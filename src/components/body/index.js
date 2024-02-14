@@ -27,12 +27,12 @@ export const Body = () => {
         fetchData();
     }, [])
 
-    if (!restaurants.length) {
-        return <Shimmer />
-    }
-
-    return <div className="body">
-        <Filter onFilter={filterTopRatedRestaurants} />
-        <RestaurantContainer restaurantLists={restaurants} />
-    </div>
+    return !restaurants.length
+        ? <Shimmer />
+        : (
+            <div className="body">
+                <Filter onFilter={filterTopRatedRestaurants} />
+                <RestaurantContainer restaurantLists={restaurants} />
+            </div> 
+        )
 }
