@@ -6,12 +6,15 @@ import { ContactPage } from "./pages/contact";
 import { HomePage } from "./pages/home";
 import { Header } from "./components/header";
 import { RestaurantPage } from "./pages/restaurant";
+import { useOnlineStatus } from "./hooks/use-online-status";
 
 const AppLayout = () => {
+    const isOnline = useOnlineStatus();
+
     return (
         <div className="app">
             <Header />
-            <Outlet />
+            {isOnline ? <Outlet /> : <h1>   Looks like you are offline</h1>}
         </div>
     )
 }
