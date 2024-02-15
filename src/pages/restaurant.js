@@ -4,7 +4,7 @@ import { RestaurantBanner } from '../components/restaurant/restaurant-banner';
 import { Shimmer } from '../components/shimmer';
 import { useRestaurantData } from '../hooks/use-restaurant-data';
 
-export const RestaurantPage = () => {
+const RestaurantPage = () => {
     const { resId } = useParams();
     const restaurantData = useRestaurantData(resId);
 
@@ -30,3 +30,5 @@ export const RestaurantPage = () => {
         </div>
     )
 }
+
+export default RestaurantPage;

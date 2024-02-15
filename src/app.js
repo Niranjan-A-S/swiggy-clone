@@ -1,12 +1,15 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
-import { ErrorPage } from "./pages/error";
-import { AboutPage } from "./pages/about";
-import { ContactPage } from "./pages/contact";
-import { HomePage } from "./pages/home";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Header } from "./components/header";
-import { RestaurantPage } from "./pages/restaurant";
+import { Shimmer } from "./components/shimmer";
 import { useOnlineStatus } from "./hooks/use-online-status";
+import { ErrorPage } from "./pages/error";
+
+const HomePage = lazy(() => import('./pages/home'));
+const AboutPage = lazy(() => import('./pages/about'));
+const ContactPage = lazy(() => import('./pages/contact'));
+const RestaurantPage = lazy(() => import('./pages/restaurant'));
 
 const AppLayout = () => {
     const isOnline = useOnlineStatus();
@@ -14,10 +17,14 @@ const AppLayout = () => {
     return (
         <div className="app">
             <Header />
-            {isOnline ? <Outlet /> : <h1>   Looks like you are offline</h1>}
+            <Suspense fallback={<Shimmer />}>
+                {isOnline
+                    ? <Outlet />
+                    : <h1>   Looks like you are offline</h1>}
+            </Suspense>
         </div>
-    )
-}
+    );
+};
 
 const appRouter = createBrowserRouter([
     {

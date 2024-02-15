@@ -5,7 +5,7 @@ import { Shimmer } from "../components/shimmer";
 import { FilterButton } from "../components/toolbar/filter-button";
 import { SearchBar } from "../components/toolbar/search";
 
-export const HomePage = () => {
+const HomePage = () => {
     const [restaurantList, setRestaurantList] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [query, setQuery] = useState('');
@@ -47,3 +47,5 @@ export const HomePage = () => {
         <RestaurantList restaurantList={filteredRestaurants} />
     </div>
 }
+
+export default HomePage;
