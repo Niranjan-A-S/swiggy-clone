@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { CDN_URL } from "../../utils/constants"
+import { resolveToString } from "../../utils/helper";
 
 export const RestaurantCard = ({ data: { name, cuisines, avgRating, sla: { slaString }, cloudinaryImageId, costForTwo, id } }) => {
 
     const navigate = useNavigate();
-
     const navigateToMenu = () => {
         navigate(`/restaurant/${id}`)
     }
@@ -17,7 +17,7 @@ export const RestaurantCard = ({ data: { name, cuisines, avgRating, sla: { slaSt
             loading="lazy"
         />
         <h3>{name}</h3>
-        <span>{cuisines?.join(', ')}</span>
+        <span>{resolveToString(cuisines)}</span>
         <span>{avgRating} stars</span>
         <span>{costForTwo}</span>
         <span>{slaString}</span>

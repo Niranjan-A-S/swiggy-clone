@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from ".././utils/constants";
-import { RestaurantContainer } from "../components/restaurant/restaurant-container";
+import { RestaurantList } from "../components/restaurant/restaurant-list";
 import { Shimmer } from "../components/shimmer";
 import { FilterButton } from "../components/toolbar/filter-button";
 import { SearchBar } from "../components/toolbar/search";
 
 export const HomePage = () => {
-    const [restaurants, setRestaurants] = useState([]);
+    const [restaurantList, setRestaurantList] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [query, setQuery] = useState('');
 
@@ -15,22 +15,20 @@ export const HomePage = () => {
     }
 
     const onSearch = () => {
-        const temp = restaurants?.filter(restaurant => restaurant.info.name.toLowerCase().includes(query.toLowerCase()));
-        setFilteredRestaurants(temp);
+        setFilteredRestaurants(restaurantList?.filter(restaurant => restaurant.info.name.toLowerCase().includes(query.toLowerCase())));
     }
 
     const filterTopRatedRestaurants = () => {
-        const temp = restaurants?.filter(restaurant => restaurant.info.avgRating > 4.5);
-        setFilteredRestaurants(temp);
+        setFilteredRestaurants(restaurantList?.filter(restaurant => restaurant.info.avgRating > 4.5));
     };
 
     const fetchData = async () => {
         try {
             const response = await fetch(SWIGGY_API_URL);
             const { data: { cards } } = await response.json();
-            const { restaurants: _restaurants } = cards[1]?.card?.card?.gridElements?.infoWithStyle;
-            setRestaurants(_restaurants);
-            setFilteredRestaurants(_restaurants);
+            const { restaurants } = cards[1]?.card?.card?.gridElements?.infoWithStyle;
+            setRestaurantList(restaurants);
+            setFilteredRestaurants(restaurants);
         } catch (error) {
             console.error(error);
         }
@@ -38,12 +36,11 @@ export const HomePage = () => {
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
-    return !restaurants.length
-        ? <Shimmer />
-        : (
-            <div className="body">
+    if (!restaurantList.length) return <Shimmer />;
+
+    return <div className="body">
                 <div className="toolbar">
                     <FilterButton onFilter={filterTopRatedRestaurants} />
                     <SearchBar
@@ -51,7 +48,6 @@ export const HomePage = () => {
                         onSearch={onSearch}
                         onChange={onQueryChange} />
                 </div>
-                <RestaurantContainer restaurantLists={filteredRestaurants} />
-            </div>
-        )
+        <RestaurantList restaurantList={filteredRestaurants} />
+    </div>
 }

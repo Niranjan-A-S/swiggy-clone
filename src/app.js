@@ -5,7 +5,7 @@ import { AboutPage } from "./pages/about";
 import { ContactPage } from "./pages/contact";
 import { HomePage } from "./pages/home";
 import { Header } from "./components/header";
-import { RestaurantInfo } from "./pages/restaurant-info";
+import { RestaurantPage } from "./pages/restaurant";
 
 const AppLayout = () => {
     return (
@@ -24,7 +24,7 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: < HomePage />
+                element: <HomePage />
             },
             {
                 path: 'about',
@@ -36,7 +36,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'restaurant/:resId',
-                element: <RestaurantInfo />
+                element: <RestaurantPage />
             }
         ]
     },
