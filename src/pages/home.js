@@ -37,8 +37,8 @@ const HomePage = () => {
 
     if (!restaurantList.length) return <Shimmer />;
 
-    return <div className="body">
-        <div className="toolbar">
+    return <div className="px-24 grid gap-6">
+        <div className="flex gap-4">
             <FilterButton onFilter={filterTopRatedRestaurants} />
             <SearchBar
                 query={query}

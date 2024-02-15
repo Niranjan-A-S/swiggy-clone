@@ -1,1 +1,1 @@
-export const resolveToString = (array) => array.join(',');
+export const resolveToString = (array) => array.join(', ');

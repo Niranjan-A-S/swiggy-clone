@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
+import { navItemsMetaData } from "../../utils/constants";
+import { NavItem } from "./nav-item";
 
-export const NavItems = () => {
-    return <div className="nav-items">
-        <ul>
-            <li><Link to='/'>Home</Link> </li>
-            <li><Link to='about'>About Us</Link></li>
-            <li><Link to='contact'>Contact Us</Link></li>
-            <li>Cart</li>
-        </ul>
-    </div>
+export const NavItems = () => { 
+
+    const renderNavItem = ({ label, to }) => < NavItem key={label} label={label} to={to} />
+
+    return <ul className="flex gap-8 ">
+        {navItemsMetaData.map(renderNavItem)}
+    </ul>
 }

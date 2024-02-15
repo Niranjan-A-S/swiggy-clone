@@ -15,7 +15,7 @@ const AppLayout = () => {
     const isOnline = useOnlineStatus();
 
     return (
-        <div className="app">
+        <div className="box-border text-md">
             <Header />
             <Suspense fallback={<Shimmer />}>
                 {isOnline

@@ -1,7 +1,6 @@
 import { RestaurantCard } from "./restaurant-card"
 
 export const RestaurantList = ({ restaurantList }) => {
-
     const renderRestaurantCards = () =>
         restaurantList?.map(({ info }) =>
             <RestaurantCard
@@ -10,7 +9,7 @@ export const RestaurantList = ({ restaurantList }) => {
             />
         )
 
-    return <div className="res-container">
+    return <div className="flex flex-wrap gap-6">
         {renderRestaurantCards()}
     </div>
 }

@@ -9,18 +9,16 @@ export const RestaurantCard = ({ data: { name, cuisines, avgRating, sla: { slaSt
         navigate(`/restaurant/${id}`)
     }
 
-    return <div className="res-card" onClick={navigateToMenu}>
+    return <div className="w-[250px] max-h-[300px] flex flex-col gap-1 cursor-pointer hover:scale-105 transition duration-100 ease-in" onClick={navigateToMenu}>
         <img
             alt="res-logo"
-            className="res-logo"
+            className="w-full h-[170px] rounded-xl"
             src={CDN_URL + cloudinaryImageId}
             loading="lazy"
         />
-        <h3>{name}</h3>
-        <span>{resolveToString(cuisines)}</span>
-        <span>{avgRating} stars</span>
-        <span>{costForTwo}</span>
-        <span>{slaString}</span>
+        <span className="text-lg font-semibold">{name}</span>
+        <span className="text-md font-semibold text-ellipsis overflow-hidden">⭐{" "}{avgRating}{" "}{slaString}</span>
+        <span className="text-sm text-ellipsis text-gray-500 overflow-hidden">{resolveToString(cuisines)}</span>
     </div>
 }
 
