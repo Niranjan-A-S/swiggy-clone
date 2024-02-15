@@ -12,9 +12,6 @@ export const HomePage = () => {
 
     const onQueryChange = (event) => {
         setQuery(event.target.value);
-    }
-
-    const onSearch = () => {
         setFilteredRestaurants(restaurantList?.filter(restaurant => restaurant.info.name.toLowerCase().includes(query.toLowerCase())));
     }
 
@@ -41,13 +38,12 @@ export const HomePage = () => {
     if (!restaurantList.length) return <Shimmer />;
 
     return <div className="body">
-                <div className="toolbar">
-                    <FilterButton onFilter={filterTopRatedRestaurants} />
-                    <SearchBar
-                        query={query}
-                        onSearch={onSearch}
-                        onChange={onQueryChange} />
-                </div>
+        <div className="toolbar">
+            <FilterButton onFilter={filterTopRatedRestaurants} />
+            <SearchBar
+                query={query}
+                onChange={onQueryChange} />
+        </div>
         <RestaurantList restaurantList={filteredRestaurants} />
     </div>
 }
