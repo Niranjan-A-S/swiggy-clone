@@ -19,5 +19,6 @@ export const navItemsMetaData = [
     },
     {
         label: 'Cart',
+        to: 'cart'
     }
 ]

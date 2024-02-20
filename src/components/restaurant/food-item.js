@@ -17,6 +17,6 @@ export const FoodItem = ({ data: { name, price, description, defaultPrice, image
                 Add
                 <button className="font-bold">+</button>
             </div>
-        </div>
+        </div>  
     </div >
 }

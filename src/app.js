@@ -5,6 +5,8 @@ import { Header } from "./components/header";
 import { Shimmer } from "./components/shimmer";
 import { useOnlineStatus } from "./hooks/use-online-status";
 import { ErrorPage } from "./pages/error";
+import { Provider } from "react-redux";
+import { appStore } from "./redux/store/app-store";
 
 const HomePage = lazy(() => import('./pages/home'));
 const AboutPage = lazy(() => import('./pages/about'));
@@ -15,6 +17,7 @@ const AppLayout = () => {
     const isOnline = useOnlineStatus();
 
     return (
+        <Provider store={appStore}>
         <div className="box-border text-md">
             <Header />
             <Suspense fallback={<Shimmer />}>
@@ -23,6 +26,7 @@ const AppLayout = () => {
                     : <h1>   Looks like you are offline</h1>}
             </Suspense>
         </div>
+        </Provider>
     );
 };
 
