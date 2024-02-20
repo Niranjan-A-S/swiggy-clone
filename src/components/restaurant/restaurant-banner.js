@@ -6,7 +6,9 @@ export const RestaurantBanner = ({ info: { name, cuisines, costForTwoMessage, cl
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
         loading="lazy"
-        height={200}
+        style={{
+            height: '300px'
+        }}
     />
     <h1>{name}</h1>
     <h4 >{resolveToString(cuisines)}</h4>

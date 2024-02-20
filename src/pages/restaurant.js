@@ -10,8 +10,9 @@ const RestaurantPage = () => {
 
     if (!restaurantData) return <Shimmer />
 
-    const { name, cuisines, costForTwoMessage, cloudinaryImageId } = restaurantData?.cards[0]?.card?.card?.info;
-    const menuCategories = restaurantData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.slice(1, 5);
+    const { name, cuisines, costForTwoMessage, cloudinaryImageId } = restaurantData?.cards[2]?.card?.card?.info;
+
+    const menuCategories = restaurantData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.slice(1, 5);
 
     const renderMenuCategories = () => menuCategories?.map(({ card: { card: { title, itemCards } } }) =>
         <MenuCategory

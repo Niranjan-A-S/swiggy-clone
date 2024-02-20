@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom"
-import { CDN_URL } from "../../utils/constants"
+import { useNavigate } from "react-router-dom";
+import { CDN_URL } from "../../utils/constants";
 import { resolveToString } from "../../utils/helper";
 
 export const RestaurantCard = ({ data: { name, cuisines, avgRating, sla: { slaString }, cloudinaryImageId, costForTwo, id } }) => {
